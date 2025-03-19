@@ -8,4 +8,5 @@ A Discord bot for the **Wild Land Server** ([WLD]) DayZ server, designed to enha
 - **Promo Code Management**: Easily handle and validate promo codes.  
 - **Kill Feed**: Real-time kill notifications.  
 - **Player Online Count**: See how many players are online.  
-- **RCON Commands**: Send commands to the server.
+- **RCON Commands**: Send commands to the server.  
+- **Statistics API**: Provide server statistics through an API.
