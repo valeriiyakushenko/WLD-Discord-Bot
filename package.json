@@ -1,0 +1,25 @@
+{
+  "name": "wld-discord-bot",
+  "version": "1.0.0",
+  "description": "![Wild Land Server Logo](https://i.postimg.cc/dVG1Zcc4/WLD-Logo-v2.png)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "arma3-rcon": "^1.1.0",
+    "discord.js": "^14.18.0",
+    "dotenv": "^10.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valeriiyakushenko/WLD-Discord-Bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/valeriiyakushenko/WLD-Discord-Bot/issues"
+  },
+  "homepage": "https://github.com/valeriiyakushenko/WLD-Discord-Bot#readme"
+}
