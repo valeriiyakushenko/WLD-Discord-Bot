@@ -27,6 +27,8 @@ KILLFEED_SOURCE_ID=0
 KILLFEED_TARGET_ID=0
 STATISCTIC_SOURCE_ID=0
 DISCORD_BOT_KEY=""
+API_LOGIN=""
+API_PASSWORD=""
   `;
 
   fs.writeFileSync('.env', defaultConfig.trim());
