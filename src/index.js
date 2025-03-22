@@ -24,11 +24,11 @@ app.use(authMiddleware);
 
 app.get('/stats', (req, res) => {
     const playerCount = getPlayerCount();
-    const playersArray = getPlayersArray().map(player => (
-        player[0],
-        player[5],
-        player[3]
-    ));
+    const playersArray = getPlayersArray().map(player => ({
+        id: player[0],
+        name :player[5],
+        ping: player[3]
+    }));
     res.json({ playerCount, playersArray });
 });
 
