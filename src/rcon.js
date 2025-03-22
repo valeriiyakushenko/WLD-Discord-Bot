@@ -8,8 +8,8 @@ async function connectToServer() {
     if (!a3r) {
         a3r = new A3Rcon(process.env.R_IP, process.env.R_PORT, process.env.R_KEY, {
             enabled: true,
-            interval: 5,
-            count: 24,
+            interval: 80,
+            count: 1,
         });
 
         try {
@@ -34,6 +34,17 @@ async function getPlayerCount() {
     }
 }
 
+async function getPlayersArray() {
+    try {
+        const response = await a3r.getPlayersArray();
+        return response;
+
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
 async function sendMessageToAll(message) {
     try {
         const response = await a3r.say(`${message}`);
@@ -47,4 +58,4 @@ async function sendMessageToAll(message) {
 
 connectToServer();
 
-module.exports = { getPlayerCount, sendMessageToAll };
+module.exports = { getPlayerCount, getPlayersArray, sendMessageToAll };

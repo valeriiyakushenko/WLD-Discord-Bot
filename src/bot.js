@@ -1,5 +1,5 @@
 const { Client, GatewayIntentBits } = require('discord.js');
-const { getPlayerCount, sendMessageToAll } = require('./rcon');
+const { getPlayerCount, getPlayersArray, sendMessageToAll } = require('./rcon');
 
 require('dotenv').config();
 
@@ -12,13 +12,16 @@ const client = new Client({
 });
 
 let playerCount = 0;
+let playersArray = [0];
 exports.getPlayerCount = () => playerCount;
+exports.getPlayersArray = () => playersArray;
 
 client.once('ready', async () => {
     console.log('Bot is logged in!');
     
     setInterval(async () => {
         playerCount = await getPlayerCount();
+        playersArray = await getPlayersArray();
         if (playerCount !== null) {
             await client.user.setPresence({
                 activities: [{ name: `${playerCount}/60`, type: 0 }],
