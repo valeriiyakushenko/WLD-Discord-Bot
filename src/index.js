@@ -1,7 +1,7 @@
 const express = require('express');
 const basicAuth = require('basic-auth');
 const { checkAndCreateEnv } = require('./env');
-const { getPlayerCount, getPlayersArray} = require('./bot');
+const { getMemberCount, getPlayerCount, getPlayersArray} = require('./bot');
 
 checkAndCreateEnv();
 require('dotenv').config();
@@ -23,13 +23,19 @@ const authMiddleware = (req, res, next) => {
 app.use(authMiddleware);
 
 app.get('/stats', (req, res) => {
-    const playerCount = getPlayerCount();
+    const memberCount = parseInt(getMemberCount(), 10);
+    const playerCount = parseInt(getPlayerCount(), 10);
     const playersArray = getPlayersArray().map(player => ({
         id: player[0],
-        name :player[5],
+        name: player[5],
         ping: player[3]
     }));
-    res.json({ playerCount, playersArray });
+    
+    res.json({ 
+        memberCount,
+        playerCount, 
+        playersArray 
+    });
 });
 
 app.listen(port, () => {

@@ -7,12 +7,15 @@ const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildMembers,
         GatewayIntentBits.MessageContent
     ]
 });
 
+let memberCount = 0;
 let playerCount = 0;
 let playersArray = [0];
+exports.getMemberCount = () => memberCount;
 exports.getPlayerCount = () => playerCount;
 exports.getPlayersArray = () => playersArray;
 
@@ -20,15 +23,22 @@ client.once('ready', async () => {
     console.log('Bot is logged in!');
     
     setInterval(async () => {
-        playerCount = await getPlayerCount();
-        playersArray = await getPlayersArray();
-        if (playerCount !== null) {
-            await client.user.setPresence({
-                activities: [{ name: `${playerCount}/60`, type: 0 }],
-                status: 'dnd',
-            });
+        try {
+            playerCount = await getPlayerCount();
+            playersArray = await getPlayersArray();
+            if (playerCount !== null) {
+                await client.user.setPresence({
+                    activities: [{ name: `${playerCount}/60`, type: 0 }],
+                    status: 'dnd',
+                });
+            }
+    
+            const guild = client.guilds.cache.get(process.env.DISCORD_SERVER_ID); 
+            memberCount = guild.memberCount;
+        } catch (error) {
+            console.error("here");
+            console.error(error);
         }
-
     }, 5000);
 });
 
